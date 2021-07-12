@@ -1,0 +1,119 @@
+create table donors(
+id integer primary key,
+nome varchar(20),
+cognome varchar(20),
+cf varchar(20),
+mail varchar(20),
+psw varchar(20),
+telefono varchar(20),
+sesso varchar(1),
+dataNascita date,
+citta varchar(20),
+via varchar(20),
+peso integer,
+rh varchar(3),
+gruppo varchar(2),
+disp varchar(2),
+iperimmune varchar(2))engine='Innodb';
+
+create table pers(
+id integer primary key,
+cf varchar(20),
+nome varchar(20),
+telefono integer,
+sesso varchar(1),
+dataNascita date,
+citta varchar(20),
+via varchar(20),
+tipo varchar(20),
+psw varchar(20)	)engine='Innodb';
+
+create table medici(
+id integer primary key,
+stip_base float,
+an_eff integer,
+stip_tot float,
+index newdip(id),
+foreign key(id) references perss(id) on update cascade on delete cascade)engine='innodb';
+
+create table sedis(
+id integer primary key,
+codresp integer,
+citta varchar(20),
+via varchar(20),
+nome varchar(20),
+index newresp(codresp),
+foreign key(codresp) references medici(id)on update cascade on delete set null)engine='Innodb'; 
+
+create table infermieri(
+id integer primary key,
+stip float,
+sedep integer,
+index newsede(sedep),
+index newdip(id),
+foreign key(id) references perss(id)on update cascade on delete cascade,
+foreign key(sedep) references sedis(id) on update cascade on delete set null)engine='innodb';
+
+create table prenotations(
+id integer primary key,
+cai integer, data date,
+codsede integer,
+index newsede(codsede),
+index newdon(cai),
+foreign key(codsede) references sedis(id) on update cascade on delete cascade,
+foreign key(cai) references donors(id) on update cascade on delete cascade)engine='Innodb';
+
+create table donazione_generica(
+tipo varchar(9) primary key)engine='innodb';
+
+create table donations(
+id integer primary key,
+cai integer,
+tipo varchar(9),
+data date,
+codsede integer,
+quantita integer,
+gruppo varchar(4),
+rh varchar(3),
+iperimmune varchar(2),
+index newdon(cai),
+index newtipo(tipo),
+index newsede(codsede),
+foreign key(cai) references donors(id) on update cascade,
+foreign key(tipo) references donazione_generica(tipo),
+foreign key(codsede) references sedis(id) on update cascade,
+unique (cai,data),
+unique(id, tipo))engine='innodb';
+
+create table analisis(
+id integer primary key,
+codmed integer,
+coddona integer,
+malinf varchar(3),
+valemo numeric(3,1),
+index newmed(codmed),
+index newdona(coddona),
+foreign key(coddona) references donations(id) on update cascade on delete set null,
+foreign key(codmed) references medici(id) on update cascade on delete cascade)engine='innodb';
+
+
+create table sedi_inf(
+codinf integer,
+codsede integer,
+datain date,
+giorni_lav varchar(30),
+index newinf(codinf),
+index newsede(codsede),
+foreign key(codinf) references infermieri(id) on update cascade on delete cascade,
+foreign key(codsede) references sedis(id) on update cascade on delete cascade,
+primary key(codinf, codsede))engine='Innodb';
+
+create table sede_att_med(
+codmed integer,
+codsede integer, 
+datain date,
+index newmed(codmed),
+index newsede(codsede),
+foreign key(codmed) references medici(id) on update cascade on delete cascade,
+foreign key(codsede) references sedis(id) on update cascade on delete cascade,
+primary key(codmed)) engine='innodb';

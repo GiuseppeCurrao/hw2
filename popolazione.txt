@@ -1,0 +1,37 @@
+insert into donors values('1957', 'Giuseppe', 'Currao', 'CRRGPP99R02C351H','peppecurrao@gmail.com', 'salame55', '3892879222', 'M', '1999-10-02', 'Mascalucia', 'via etnea', '80', 'pos', 'B', 'si', 'no');
+insert into donors values('1286', 'Giacomo', 'Verdi', 'VRDGCM90S04I754I', 'giacomogiacomo@gmail.com', 'polpetta3', '3386723987', 'M', '1990-11-04', 'Siracusa', 'via archia', '70', 'pos', 'A', 'si', 'si');
+
+insert into pers values('90906754','MNGNNZ76P24G273K', 'Nunzio Mangiameli', '3408978674', 'M', '1976-09-24', 'Palermo', 'via della regione', 'medico', 'verdure5');
+insert into pers values('89321791', 'BLLRNI80H60C351N', 'Irene Bellofiore', '3408456775', 'F', '1980-06-20', 'Catania', 'via della regione', 'medico', "rotolapalla");
+
+insert into pers values('63728467','CRRCRL86B47I754G', 'Carla Curro', '3924251342', 'F', '1986-02-07', 'Siracusa', 'via antani', 'infermiere', 'vibranio13');
+insert into pers values('67153810','BLNGNS92S49C351T', 'Agnese Blanco', '3498297548', 'F', '1992-11-09', 'Catania', 'via bellini', 'infermiere','dadopesato');
+
+insert into medici values('90906754', '1500', '12', '1500');
+insert into medici values('89321791', '1500', '20', '1500');
+
+insert into sedis values('001', '90906754', 'Catania', 'via santa sofia', 'Policlinico'); 
+insert into sedis values('002', '89321791', 'Palermo', 'via santa rosalia', 'Cervello');
+
+insert into infermieri values('63728467', '1400', '001');
+insert into infermieri values('89321791', '1400','002');
+
+insert into prenotations values('19876', '1957', '2020-12-24', '001');
+insert into prenotations values('20375', '1286', '2021-01-10', '002');
+
+insert into donazione_generica values('sangue');
+insert into donazione_generica values('plasma');
+insert into donazione_generica values('piastrine');
+
+insert into donations values('7432','1957', 'sangue', '2020-08-04', '001', '475', 'B', 'pos', null);
+insert into donations values('8901','1286', 'plasma', '2020-08-20', '002', '475', null, null, 'si');
+insert into donations values('3020','1957', 'sangue', '2020-02-01', '001', '470', 'B', 'pos', null);
+
+
+insert into sedi_inf values('63728467', '001', '2010-08-09', 'lun-mar-gio');
+insert into sedi_inf values('63728467', '002', '2013-09-09', 'mer-ven');
+insert into sedi_inf values('89321791', '001', '2012-10-29', 'lun-mer-ven-sab-dom');
+
+insert into sede_att_med values('90906754', '001', '2010-02-30');
+insert into sede_att_med values('89321791', '001', '2019-10-20');
+
