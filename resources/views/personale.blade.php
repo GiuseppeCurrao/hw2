@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="trova" id="trova">
-                    <h3>Cerca un dipendente tramite il suo cognome</h3>
+                    <h3>Cerca un dipendente tramite il suo nome e cognome</h3>
                     <form id = "Tr" name="Trova">
                             <div class="nome">
                                 <div><input type='text' name='cognome' <?php if(isset($_POST["cognome"])){echo "value=".$_POST["cognome"];} ?>></div>
